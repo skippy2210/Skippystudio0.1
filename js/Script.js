@@ -1,3 +1,18 @@
+$(window).on("load", function(){
+    $(".loader .inner").fadeOut(3500, function(){
+        $(".loader").fadeOut(4000);
+    });
+
+    $(".items").isotope({
+        filter:"*",
+        animationOption :{
+            duration:1500,
+            easing:'linear',
+            queue:false
+        }
+    });
+})
+
 $(document).ready(function(){
 
     $('#slides').superslides({
@@ -77,14 +92,7 @@ $(document).ready(function(){
 
     $("[data-fancybox]").fancybox()
 
-    $(".items").isotope({
-        filter:"*",
-        animationOption :{
-            duration:1500,
-            easing:'linear',
-            queue:false
-        }
-    });
+    
     
     $("#filters a").click(function(){
         $("#filters .current").removeClass("current");
@@ -102,6 +110,17 @@ $(document).ready(function(){
 
         return false;
     });
+
+    $("#Navigation li a").click(function(e){
+        e.preventDefault();
+        var targetElement = $(this).attr("href");
+        var targetPosition = $(targetElement).offset().top;
+        $("html , body").animate({scrollTop : targetPosition - 50}, "fast");
+    });
+
+
+
+
 
     const nav = $("#Navigation");
     const navTop = nav.offset().top;
